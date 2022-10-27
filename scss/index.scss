@@ -1,0 +1,511 @@
+// import
+@font-face {
+    font-family: 'helveticaregular';
+    src: url('./fonts/helvetica-webfont.woff2') format('woff2'),
+         url('./fonts/helvetica-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+// Reset....
+*{
+    margin: 0;
+    padding: 0;
+}
+
+// variables.....
+$clr:#F3976C;
+$clr_txt:#FFFFFF;
+$clr_gris: #575757;
+$clr_bleu: #364577;
+
+// breakpoints.....
+// minimum width
+
+$breakpoints_min: (
+    sm-min-width: 319px,
+    mm-min-width:374px,
+    lm-min-width: 424px,
+    tablet-min-width: 767px,
+    sL-min-width: 1023px,
+    lL-min-width: 1439px
+);
+
+$breakpoints_max: (
+    sm-max-width: 373px,
+    mm-max-width:423px,
+    lm-max-width: 766px,
+    tablet-maxax-width: 1022px,
+    sL-max-width: 1438px,
+    lL-max-width: 2000px
+);
+
+
+// mixin .....
+// mix pour le menu_
+
+@mixin menu_mobile {
+    @media screen and (min-width: map-get($breakpoints_min, sm-min-width)) and (max-width: map-get($breakpoints_min,tablet-min-width )) {
+     @content;   
+    }
+}
+
+// responsive mixin
+//  mobile_ 
+@mixin responsive_sMobile {
+    @media screen and (min-width: map-get($breakpoints_min, sm-min-width)) and (max-width: map-get($breakpoints_max, sm-max-width)) {
+        @content;
+    }
+}
+// mobile medium
+@mixin responsive_mMobile {
+    @media screen and (min-width: map-get($breakpoints_min, mm-min-width)) and (max-width: map-get($breakpoints_max, mm-max-width)) {
+        @content;
+    }
+}
+// large mobile
+@mixin responsive_lMobile {
+    @media screen and (min-width: map-get($breakpoints_min, lm-min-width)) and (max-width: map-get($breakpoints_max, lm-max-width)){
+        @content;
+    }
+}
+// tablet_
+@mixin responsive_tablet {
+    @media screen and (min-width: map-get($breakpoints_min,tablet-min-width )) and (max-width: map-get($breakpoints_max,tablet-maxax-width )) {
+        @content;
+    }
+}
+// laptop small
+@mixin responsive_laptop {
+    @media screen and (min-width: map-get($breakpoints_min,sL-min-width )) and (max-width: map-get($breakpoints_max,lL-max-width )) {
+        @content;
+    }
+}
+// large mobile
+@mixin responsive_laptopL {
+    @media screen and (min-width: map-get($breakpoints_min,lL-min-width )) and (max-width: map-get($breakpoints_max,sL-max-width )) {
+        @content;
+    }
+}
+
+
+// code....
+// liste et liens
+a{
+    text-decoration: none;
+}
+li{
+    list-style-type: none;
+}
+// body
+body{
+    font-family: 'helveticaregular' ;
+    color: $clr_gris;
+}
+// LES MOTS SURLIGNE EN GRAS
+span{
+    font-weight: bold;
+}
+// header settings...
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    & img{
+        width: 200px;
+    }
+
+    // BARRE DE NAVIGATION
+    
+    .nav{
+
+        // MENU NAVIGATION .....
+        @include menu_mobile(){
+            display: none;
+        }
+        display: flex;
+        align-items: center;
+        & ul{
+            display: flex;
+            & li{
+                & a{
+                    color: $clr_gris;
+                    &:hover{
+                        color: $clr;
+                    }
+                }
+                &:nth-last-child(2){
+                    margin-right: 10px;
+                }
+            }
+        }       
+    }
+
+    // MENU HAMBURGER .....
+
+    .menu_hamburger{
+        display: none;
+        @include menu_mobile(){
+            display: flex;
+            
+        }
+        .icon_hamburger{
+            
+            @include menu_mobile(){
+                display: flex;
+                position: absolute;
+                top: 51px;
+                right: 30px;
+            }
+        }
+    }
+
+   
+}
+// section 1 banniere
+.img_baniere{
+    background-image: url(../images/texture-paper.png);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & .logo{
+        img{
+            width: 100px;
+            margin-top: 27px;
+
+        }
+    }
+    & .sec-txt{
+        text-align: center;
+        color: #FFFFFF;
+        font-weight: bold;
+        & h1{
+            font-size: 40px;
+        }
+        & p{
+            padding-top: 15px;
+        }
+}
+}
+
+//  classe generale....
+
+.contact_btn{
+    & input{
+        margin: 27px 0 47px 0;
+        color: white;
+        padding: 15px;
+        background-color: #F3976C;
+        border: transparent;
+        border-radius: 30px;
+        width: 130px;
+        font-weight: 700;
+        transition: all 0.5s;
+        &:hover{
+            background-color: #c27956;
+            cursor: pointer;
+        }
+    }
+ }
+ 
+//  première baniere .....
+.bnr_un{
+    background-image: url(../images/la-chouette-agence-banniere.jpg);
+    background-position: center;
+    height: 26rem;
+    position: relative;
+    background-size: cover;
+}
+// deuxieme section ....
+.sec-txt2{
+    padding: 10PX;
+    margin-top: 50px;
+    text-align: center;
+    & h2{
+        font-size: 40px;
+        font-weight: 100;
+    }
+    & p{
+        font-size: 14px;
+        &:nth-last-child(2){
+            margin-top: 15px;
+            margin-bottom: 3px;
+        }
+        &:nth-last-child(1){
+            margin-bottom: 60px;
+        }
+    }
+   
+}
+
+// les trois domaines...
+// SECTION TABKEYS.......
+
+.tabkeys{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    @include responsive_laptop(){
+        justify-content: center;
+    }
+    @include responsive_laptopL(){
+        justify-content: center;
+    }
+    & .tab{
+    @include responsive_tablet(){
+        width: 233px;
+        margin-left: 41px;
+    }
+    @include responsive_laptop(){
+        width: 233px;
+        margin-left: 41px;
+    }
+    @include responsive_laptopL(){
+        width: 233px;
+        margin-left: 41px;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    & .icon{
+        font-size: 60px;
+        color: #364577;
+        margin-bottom: 5px;
+    }
+    & .tab_txt{
+        margin-bottom: 30px;
+        & h3{
+            margin: 5px 0 15px 0;
+        }
+        & p{
+            font-size: 14px;
+        }
+    }
+    }
+}
+
+// SECTION talkAboutUs .......
+.talkAboutUs{
+    padding: 10PX;
+    margin-top: 50px;
+    text-align: center;
+    & h2{
+        font-size: 40px;
+        font-weight: 100;
+    }
+    & .leS{
+        display: flex;
+        justify-content: center;
+        .talkAboutUs_txt{
+            margin-top: 20px;
+            width: 67%;
+            font-size: 14px;
+            @include responsive_laptop(){
+                width: 57%;
+            }
+            @include responsive_laptopL(){
+                width: 57%;
+            }
+            padding: 30px;
+            & .trait{
+                border-left: 5px solid #57575733;
+                padding: 10px 20px 0 20px;
+                margin-bottom: 35px;
+            }
+        }
+    }
+}
+
+// DEUXIEME BANIERE........
+.bnr_deux{
+    background-image: url(../images/image-de-presentation.bmp);
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    & .pad{
+        padding: 90px 35px;
+        color: #FFFFFF;
+    }
+    & h1{
+        padding: 24px;
+    }
+    & p{
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+// SECTION 4 .........
+
+.section4{
+    padding: 10px;
+    text-align: center;
+    background-image: url(../images/lines-h2-bg.png);
+    & .parag_sec4{
+        padding: 25px 0 50px 0;
+    }
+    & .four_pictrs{
+        @include responsive_sMobile(){
+            flex-direction: column;
+            align-items: center;
+            justify-content: initial;
+        }
+        @include responsive_mMobile(){
+            flex-direction: column;
+            align-items: center;
+            justify-content: initial;
+        }
+        @include responsive_lMobile(){
+            flex-direction: column;
+            align-items: center;
+            justify-content: initial;
+        }
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        & .pictrs{
+            @include responsive_sMobile(){
+                width:100%;
+                margin-left: 0;
+            }
+            @include responsive_mMobile(){
+                width: 100%;
+                margin-left: 0;
+            }
+            @include responsive_lMobile(){
+                width: 100%;
+                margin-left: 0;
+            }
+            margin-left: 15px;
+            margin-bottom: 40px;
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;           
+             & .pic_txt{
+                font-size: 14px;
+                padding-top: 40px;
+            }
+        }
+    }
+}
+// SECTION 4 IMGG SIZING.....
+.pic{
+    width: 245px;
+    height: 245px;
+    position: relative;
+    & .cercle{
+        display: none;
+    }
+    & img{
+        width: 245px;
+        height: 245px;
+    }
+    // effet overlay sur les images_
+    &:hover{
+        cursor: pointer;
+        .cercle{
+            display: flex;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+        img{
+            opacity: 0.5;
+            transition: all 0.4s;
+        }
+    }
+}
+
+// LE FOOTER........
+footer{
+    background-color: $clr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    color: #ffffff;
+    & .img_foot{
+        & img{
+            width: 100px;
+            padding: 10px;
+        }
+    }
+    & .rs{
+        display: flex;
+        & li{
+            width: 120px;
+            margin-left: 12px;
+        }
+        & a{
+            color: #ffffff;
+        }
+    }
+}
+
+//  CONTACT........
+ 
+.fondmarn{
+    background-color: $clr;
+}
+.nousContacter{
+    padding: 133px 40px;
+    text-align: center;
+    color: white;
+    & h1{
+        font-size: 40px;
+        font-weight: 100;
+    }
+    & h2{
+        font-size: 12px;
+        padding: 18px;
+        font-weight: 100;
+    }
+}
+.bloc_formulr{
+    padding: 7px;
+    & h2{
+        font-weight: 100;
+        font-size: 20px;
+        border-bottom: 1px solid #57575730;
+        padding: 13px;
+        display: flex;
+        justify-content: center;
+    }
+    & .formulr{
+        padding-top: 30px;
+        display: flex;
+        justify-content: center;
+        // contact bouton page 2 
+        .contpage2{
+            display: flex;
+            justify-content: center;
+        }
+        & fieldset{
+            border: none;
+            
+            & .card_formulr{
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+                & .form_txt{
+                    margin-top: 10px;
+                    padding: 8px 4px;
+                    border: 1px solid #575757;
+                    border-radius: 5px;
+                    background-color: #57575717;
+                    box-shadow: none;
+                }
+                #select{
+                    width: 140px;
+                    padding: 10px;
+                    border-radius: 5px;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
